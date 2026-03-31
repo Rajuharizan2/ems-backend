@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
@@ -49,6 +50,14 @@ public class EmployeeController {
                                                       @RequestBody EmployeeDTO updatedEmployee){
         EmployeeDTO employeeDTO = employeeService.updateEmployee(employeeId, updatedEmployee);
         return ResponseEntity.ok(employeeDTO);
+    }
+
+
+    //Building delete employee RESTApi
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable("id") Long employeeId){
+        employeeService.deleteEmployee(employeeId);
+        return ResponseEntity.ok("Employee deleted successfully...");
     }
 
 
